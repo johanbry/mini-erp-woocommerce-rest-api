@@ -72,7 +72,11 @@ main {
   height: 75px;
   margin-right: 2rem;
 }
-#content-products > div {
+
+/* Products CSS  */
+
+#content-products > div,
+.product-headings {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -108,4 +112,54 @@ main {
   width: 75px;
   height: 75px;
   margin-right: 2rem;
+}
+
+/* Order CSS */
+
+#content-orders > div,
+.order-headings {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid black;
+}
+
+#content-orders > div:last-child {
+  border-bottom: none;
+}
+
+.orderId-div {
+  width: 20%;
+}
+
+.status-div {
+  width: 20%;
+}
+
+.totalPrice-div {
+  width: 30%;
+  padding-left: 3rem;
+}
+
+.date-div {
+  width: 30%;
+  text-align: right;
+}
+
+/* Media CSS */
+
+#content-media img {
+  margin: 1rem;
+}
+
+.order-status {
+  text-align: center;
+  width: 6rem;
+  height: 2rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
 }
