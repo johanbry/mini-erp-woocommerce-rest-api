@@ -62,7 +62,7 @@ function renderProducts() {
       img.setAttribute("src", product.thumb_url);
       title.innerText = product.title;
       price.innerText = product.price + " kr";
-      title_link.setAttribute("href", product.thumb_url);
+      title_link.setAttribute("href", product.permalink);
 
       title_link.appendChild(title);
 
@@ -72,6 +72,89 @@ function renderProducts() {
 
       row.append(img_div, title_div, category_div, price_div);
       contentDiv.appendChild(row);
+    });
+  } else {
+    // inga posts
+  }
+}
+
+function renderOrders() {
+  const contentDiv = document.getElementById("content-orders");
+
+  let orders = JSON.parse(localStorage.getItem("orders"));
+
+  if (orders) {
+    orders.forEach((order) => {
+      const row = document.createElement("div");
+
+      const orderId_div = document.createElement("div");
+      orderId_div.classList.add("orderId-div");
+      const status_div = document.createElement("div");
+      status_div.classList.add("status-div");
+      const totalPrice_div = document.createElement("div");
+      totalPrice_div.classList.add("totalPrice-div");
+      const date_div = document.createElement("div");
+      date_div.classList.add("date-div");
+
+      const orderId = document.createElement("h3");
+      const status = document.createElement("button");
+      status.setAttribute("class", "order-status");
+      const totalPrice = document.createElement("h3");
+      const date = document.createElement("h3");
+
+      const datedate = new Date(order.date);
+      const options = { day: "numeric", month: "short", year: "numeric" };
+      const formattedDate = datedate.toLocaleDateString("en-GB", options);
+
+      orderId.innerText = order.id;
+      status.innerText = order.status;
+      totalPrice.innerText = order.amount + " kr";
+      date.innerText = formattedDate;
+
+      switch (order.status) {
+        case "completed":
+          status.style.backgroundColor = "green";
+          status.style.color = "white";
+          break;
+        case "cancelled":
+          status.style.backgroundColor = "red";
+          status.style.color = "white";
+          break;
+        case "processing":
+          status.style.backgroundColor = "yellow";
+          break;
+        default:
+          status.style.backgroundColor = "black";
+      }
+
+      orderId_div.appendChild(orderId);
+      status_div.append(status);
+      totalPrice_div.append(totalPrice);
+      date_div.append(date);
+
+      row.append(orderId_div, status_div, totalPrice_div, date_div);
+      contentDiv.appendChild(row);
+    });
+  } else {
+    // inga posts
+  }
+}
+
+function renderMedia() {
+  const contentDiv = document.getElementById("content-media");
+
+  let medias = JSON.parse(localStorage.getItem("media"));
+
+  if (medias) {
+    medias.forEach((media) => {
+      const img_link = document.createElement("a");
+      img_link.setAttribute("href", media.full_url);
+
+      const img = document.createElement("img");
+      img.setAttribute("src", media.thumb_url);
+
+      img_link.appendChild(img);
+      contentDiv.appendChild(img_link);
     });
   } else {
     // inga posts
