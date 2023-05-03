@@ -17,10 +17,9 @@ header {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  padding: 15px;
   width: 100%;
   max-width: 1024px;
-  padding: 0 2rem;
+  padding: 15px 2rem 4rem 2rem;
 }
 
 ul {
@@ -49,4 +48,64 @@ header > button {
 header > button a {
   color: white;
   text-decoration: none;
+}
+
+main {
+  width: 100%;
+  max-width: 800px;
+}
+
+#content > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid black;
+}
+
+#content > div:last-child {
+  border-bottom: none;
+}
+
+#content > div img {
+  width: 75px;
+  height: 75px;
+  margin-right: 2rem;
+}
+#content-products > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid black;
+}
+
+#content-products > div:last-child {
+  border-bottom: none;
+}
+
+.img-div {
+  width: 10%;
+}
+
+.title-div {
+  width: 40%;
+}
+
+.category-div {
+  width: 30%;
+  padding-left: 3rem;
+}
+
+.price-div {
+  width: 20%;
+  text-align: right;
+}
+
+#content-products > div img {
+  width: 75px;
+  height: 75px;
+  margin-right: 2rem;
 }
