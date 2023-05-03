@@ -34,6 +34,8 @@ for ($i = 0; $i < count((array)$posts); $i++) {
 
 $json_posts = json_encode($posts_mod);
 
+
+
 $woocommerce = new Client(
   $url,
   $consumer_key,
@@ -44,31 +46,26 @@ $woocommerce = new Client(
 );
 
 
-
 try {
   // Array of response results.
-  $orders = $woocommerce->get('orders');
-  //echo 'Id: ' . $orders[0]->id . '<br>';
+  $products = $woocommerce->get('products', array('per_page' => '10'));
 } catch (HttpClientException $e) {
   echo '<pre><code>' . print_r($e->getMessage(), true) . '</code><pre>'; // Error message.
   echo '<pre><code>' . print_r($e->getRequest(), true) . '</code><pre>'; // Last request data.
   echo '<pre><code>' . print_r($e->getResponse(), true) . '</code><pre>'; // Last response data.
 }
 
+$products_mod = array();
 
-//print_r('Tjo: ' . $json_posts);
+for ($i = 0; $i < count((array)$products); $i++) {
+  $products_mod[$i] = new Product($products[$i]->id, $products[$i]->name, $products[$i]->permalink, $products[$i]->images[0]->src, $products[$i]->price, $products[$i]->categories);
+}
 
-
-$order1 = new Order($orders[0]->id);
-$json_order = json_encode($order1);
+$json_products = json_encode($products_mod);
 
 ?>
 
 <script type="text/javascript">
   localStorage.setItem("posts", '<?php echo $json_posts ?>');
-
-
-  //localStorage.setItem("order", '<?php echo $json_order ?>');
-  //let order = JSON.parse(localStorage.getItem("order"));
-  //console.log("Order", order);
+  localStorage.setItem("products", '<?php echo $json_products ?>');
 </script>
